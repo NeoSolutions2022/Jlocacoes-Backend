@@ -83,10 +83,10 @@ public class FornecedorService : BaseService, IFornecedorService
             return null;
         }
 
-        if (dto.Foto is { Length: > 0 })
-        {
-            fornecedor.Foto = await _fileService.Upload(dto.Foto, EUploadPath.FotoFornecedor);
-        }
+        //if (dto.Foto is { Length: > 0 })
+        //{
+        //    fornecedor.Foto = await _fileService.Upload(dto.Foto, EUploadPath.FotoFornecedor);
+        //}
 
         fornecedor.Senha = _passwordHasher.HashPassword(fornecedor, fornecedor.Senha);
         fornecedor.Uf = fornecedor.Uf.ToLower();
@@ -376,12 +376,12 @@ public class FornecedorService : BaseService, IFornecedorService
             Notificator.Handle("Foto deve ter no máximo 10Mb");
         }
 
-        if (dto.Foto != null && dto.Foto.FileName.Split(".").Last() != "jfif" &&
-            dto.Foto.FileName.Split(".").Last() != "png" && dto.Foto.FileName.Split(".").Last() != "jpg"
-            && dto.Foto.FileName.Split(".").Last() != "jpeg")
-        {
-            Notificator.Handle("Foto deve do tipo png, jfif ou jpg");
-        }
+        //if (dto.Foto != null && dto.Foto.FileName.Split(".").Last() != "jfif" &&
+        //    dto.Foto.FileName.Split(".").Last() != "png" && dto.Foto.FileName.Split(".").Last() != "jpg"
+        //    && dto.Foto.FileName.Split(".").Last() != "jpeg")
+        //{
+        //    Notificator.Handle("Foto deve do tipo png, jfif ou jpg");
+        //}
 
         return !Notificator.HasNotification;
     }

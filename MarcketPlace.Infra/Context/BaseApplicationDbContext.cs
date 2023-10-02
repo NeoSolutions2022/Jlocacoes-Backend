@@ -12,7 +12,7 @@ namespace MarcketPlace.Infra.Context;
 public abstract class BaseApplicationDbContext : DbContext, IUnitOfWork
 {
     protected readonly IAuthenticatedUser AuthenticatedUser;
-
+    protected BaseApplicationDbContext() { }
     protected BaseApplicationDbContext(DbContextOptions options ,IAuthenticatedUser authenticatedUser) : base(options)
     {
         AuthenticatedUser = authenticatedUser;
@@ -47,12 +47,12 @@ public abstract class BaseApplicationDbContext : DbContext, IUnitOfWork
     public async Task<bool> Commit() => await SaveChangesAsync() > 0;
 
         private static void ApplyConfiguration(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Ignore<ValidationResult>();
-        modelBuilder.ApplyEntityConfiguration();
-        // modelBuilder.ApplyTrackingConfiguration();
-        modelBuilder.ApplySoftDeleteConfiguration();
-    }
+        {
+            modelBuilder.Ignore<ValidationResult>();
+            modelBuilder.ApplyEntityConfiguration();
+            // modelBuilder.ApplyTrackingConfiguration();
+            modelBuilder.ApplySoftDeleteConfiguration();
+        }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

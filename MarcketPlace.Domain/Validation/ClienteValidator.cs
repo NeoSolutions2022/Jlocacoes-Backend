@@ -31,21 +31,12 @@ public class ClienteValidator : AbstractValidator<Cliente>
             .NotEmpty()
             .WithMessage("Cidade não pode ser vazio!");
 
-        RuleFor(u => u.Complemento)
-            .MinimumLength(2)
-            .WithMessage("Complemento deve ter no mínimo 2 caracteres!")
-            .MaximumLength(60)
-            .WithMessage("Complemento deve ter no máximo 60 caracteres!");
 
         RuleFor(u => u.Cpf)
             .IsValidCPF()
             .NotEmpty()
             .WithMessage("Cpf não pode ser vazio!");
 
-        RuleFor(u => u.DataPagamento)
-            .NotEmpty()
-            .WithMessage("DataPagamento não pode ser vazio!")
-            .NotNull();
 
         RuleFor(u => u.Desativado)
             .NotNull();
@@ -59,13 +50,13 @@ public class ClienteValidator : AbstractValidator<Cliente>
             .WithMessage("Email não pode ser vazio!")
             .EmailAddress();
 
-        RuleFor(u => u.Endereco)
+        RuleFor(u => u.Rua)
             .MinimumLength(2)
-            .WithMessage("Endereco deve ter no mínimo 2 caracteres!")
+            .WithMessage("Rua deve ter no mínimo 2 caracteres!")
             .MaximumLength(60)
-            .WithMessage("Endereco deve ter no máximo 60 caracteres!")
+            .WithMessage("Rua deve ter no máximo 60 caracteres!")
             .NotEmpty()
-            .WithMessage("Endereco não pode ser vazio!");
+            .WithMessage("Rua não pode ser vazio!");
 
         RuleFor(u => u.Nome)
             .MinimumLength(2)

@@ -23,19 +23,12 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
             .IsRequired()
             .HasMaxLength(60);
         
-        builder
-            .Property(c => c.Complemento)
-            .IsRequired(false)
-            .HasMaxLength(60);
         
         builder
             .Property(c => c.Cpf)
             .IsRequired()
             .HasMaxLength(14);
         
-        builder
-            .Property(c => c.DataPagamento)
-            .IsRequired();
         
         builder
             .Property(c => c.Desativado)
@@ -48,7 +41,7 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
             .IsRequired();
         
         builder
-            .Property(c => c.Endereco)
+            .Property(c => c.Rua)
             .HasMaxLength(60)
             .IsRequired();
         
@@ -81,10 +74,6 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
             .IsRequired()
             .HasMaxLength(2);
         
-        builder
-            .Property(c => c.Inadiplente)
-            .IsRequired(false)
-            .HasDefaultValue(false);
         
         builder
             .Property(c => c.CodigoResetarSenha)

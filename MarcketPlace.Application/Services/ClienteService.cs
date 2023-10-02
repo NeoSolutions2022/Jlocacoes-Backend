@@ -57,10 +57,10 @@ public class ClienteService : BaseService, IClienteService
             return null;
         }
 
-        if (dto.Foto is {Length: > 0})
-        {
-            cliente.Foto = await _fileService.Upload(dto.Foto, EUploadPath.FotoFornecedor);
-        }
+        //if (dto.Foto is {Length: > 0})
+        //{
+        //    cliente.Foto = await _fileService.Upload(dto.Foto, EUploadPath.FotoFornecedor);
+        //}
         
         cliente.Senha = _passwordHasher.HashPassword(cliente, cliente.Senha);
         cliente.Uf = cliente.Uf.ToLower();
@@ -258,12 +258,12 @@ public class ClienteService : BaseService, IClienteService
             Notificator.Handle("Foto deve ter no máximo 10Mb");
         }
 
-        if (dto.Foto != null && dto.Foto.FileName.Split(".").Last() != "jfif" &&
-            dto.Foto.FileName.Split(".").Last() != "png" && dto.Foto.FileName.Split(".").Last() != "jpg" 
-            && dto.Foto.FileName.Split(".").Last() != "jpeg")
-        {
-            Notificator.Handle("Foto deve do tipo png, jfif ou jpg");
-        }
+        //if (dto.Foto != null && dto.Foto.FileName.Split(".").Last() != "jfif" &&
+        //    dto.Foto.FileName.Split(".").Last() != "png" && dto.Foto.FileName.Split(".").Last() != "jpg" 
+        //    && dto.Foto.FileName.Split(".").Last() != "jpeg")
+        //{
+        //    Notificator.Handle("Foto deve do tipo png, jfif ou jpg");
+        //}
 
         return !Notificator.HasNotification;
     }

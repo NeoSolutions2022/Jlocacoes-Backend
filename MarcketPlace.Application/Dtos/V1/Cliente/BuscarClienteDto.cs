@@ -44,15 +44,6 @@ public class BuscarClienteDto : BuscaPaginadaDto<Domain.Entities.Cliente>
             query = query.Where(c => c.Cidade.Contains(Cidade));
         }
         
-        if (Inadiplente.HasValue)
-        {
-            query = query.Where(c => c.Inadiplente == Inadiplente.Value);
-        }
-        
-        if (DataPagamento.HasValue)
-        {
-            query = query.Where(c => c.DataPagamento == DataPagamento.Value);
-        }
         
         if (Desativado.HasValue)
         {
@@ -75,8 +66,6 @@ public class BuscarClienteDto : BuscaPaginadaDto<Domain.Entities.Cliente>
             {
                 "nome" => query.OrderBy(c => c.Nome),
                 "nomesocial" => query.OrderBy(c => c.NomeSocial),
-                "inadiplente" => query.OrderBy(c => c.Inadiplente),
-                "datapagamento" => query.OrderBy(c => c.DataPagamento),
                 "bairro" => query.OrderBy(c => c.Bairro),
                 "cep" => query.OrderBy(c => c.Cep),
                 "cidade" => query.OrderBy(c => c.Cidade),
@@ -91,12 +80,10 @@ public class BuscarClienteDto : BuscaPaginadaDto<Domain.Entities.Cliente>
         {
             "nome" => query.OrderByDescending(c => c.Nome),
             "nomesocial" => query.OrderByDescending(c => c.NomeSocial),
-            "inadiplente" => query.OrderByDescending(c => c.Inadiplente),
             "cep" => query.OrderByDescending(c => c.Cep),
             "cidade" => query.OrderByDescending(c => c.Cidade),
             "bairro" => query.OrderByDescending(c => c.Bairro),
             "uf" => query.OrderByDescending(c => c.Uf),
-            "datapagamento" => query.OrderByDescending(c => c.DataPagamento),
             "desativado" => query.OrderByDescending(c => c.Desativado),
             "id" or _ => query.OrderByDescending(c => c.Id)
         };

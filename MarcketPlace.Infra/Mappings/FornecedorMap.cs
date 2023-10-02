@@ -13,9 +13,6 @@ public class FornecedorMap : IEntityTypeConfiguration<Fornecedor>
             .IsRequired()
             .HasMaxLength(30);
 
-        builder
-            .Property(c => c.Categoria)
-            .IsRequired();
         
         builder
             .Property(c => c.Cep)
@@ -37,10 +34,6 @@ public class FornecedorMap : IEntityTypeConfiguration<Fornecedor>
             .IsRequired()
             .HasMaxLength(14);
         
-        builder
-            .Property(c => c.Complemento)
-            .IsRequired(false)
-            .HasMaxLength(60);
         
         builder
             .Property(c => c.Cpf)
@@ -58,7 +51,7 @@ public class FornecedorMap : IEntityTypeConfiguration<Fornecedor>
             .IsRequired();
         
         builder
-            .Property(c => c.Endereco)
+            .Property(c => c.Rua)
             .HasMaxLength(60)
             .IsRequired();
         

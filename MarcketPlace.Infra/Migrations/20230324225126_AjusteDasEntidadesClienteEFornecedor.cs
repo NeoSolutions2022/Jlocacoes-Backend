@@ -52,7 +52,7 @@ namespace MarcketPlace.Infra.Migrations
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "Endereco",
+                name: "Rua",
                 table: "Fornecedores",
                 type: "nvarchar(60)",
                 maxLength: 60,
@@ -116,7 +116,7 @@ namespace MarcketPlace.Infra.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Endereco",
+                name: "Rua",
                 table: "Clientes",
                 type: "nvarchar(60)",
                 maxLength: 60,
@@ -150,7 +150,7 @@ namespace MarcketPlace.Infra.Migrations
                 table: "Fornecedores");
 
             migrationBuilder.DropColumn(
-                name: "Endereco",
+                name: "Rua",
                 table: "Fornecedores");
 
             migrationBuilder.DropColumn(
@@ -178,7 +178,7 @@ namespace MarcketPlace.Infra.Migrations
                 table: "Clientes");
 
             migrationBuilder.DropColumn(
-                name: "Endereco",
+                name: "Rua",
                 table: "Clientes");
 
             migrationBuilder.DropColumn(

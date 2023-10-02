@@ -60,8 +60,8 @@ public class PagamentosService : BaseService, IPagamentosService
 
         if (payment.Status == "approved")
         {
-            cliente.Inadiplente = false;
-            cliente.DataPagamento = DateTime.Now.AddMonths(1);
+            //cliente.Inadiplente = false;
+            //cliente.DataPagamento = DateTime.Now.AddMonths(1);
             return;
         }
         

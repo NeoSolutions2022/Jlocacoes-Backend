@@ -12,19 +12,18 @@ public class Cliente : Entity, ISoftDelete, IAggregateRoot
     public string Cpf { get; set; } = null!;
     public string? Telefone { get; set; }
     public string Senha { get; set; } = null!;
-    public bool? Inadiplente { get; set; }
-    public DateTime DataPagamento { get; set; }
+    //public bool? Inadiplente { get; set; }
+    public string Cep { get; set; } = null!;
+    public string Uf { get; set; } = null!;
+    public string Cidade { get; set; } = null!;
+    public string Bairro { get; set; } = null!;
+    public string Rua { get; set; } = null!;
+    public int Numero { get; set; }
+    //public string? Complemento { get; set; }
+    public string? Foto { get; set; }
     public bool Desativado { get; set; }
     public Guid? CodigoResetarSenha { get; set; }
     public DateTime? CodigoResetarSenhaExpiraEm { get; set; }
-    public string Cep { get; set; } = null!;
-    public string Cidade { get; set; } = null!;
-    public string Uf { get; set; } = null!;
-    public string Endereco { get; set; } = null!;
-    public string Bairro { get; set; } = null!;
-    public int Numero { get; set; }
-    public string? Complemento { get; set; }
-    public string? Foto { get; set; }
 
     public override bool Validar(out ValidationResult validationResult)
     {

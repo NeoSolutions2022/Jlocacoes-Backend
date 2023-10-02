@@ -16,12 +16,7 @@ public class FornecedorValidator : AbstractValidator<Fornecedor>
             .NotEmpty()
             .WithMessage("Bairro não pode ser vazio!");
 
-        RuleFor(c => c.Categoria)
-            .NotNull()
-            .WithMessage("Categoria não pode ser nula")
-            .NotEmpty()
-            .WithMessage("Categoria deve conter ao menos um item");
-
+        
         RuleFor(u => u.Cep)
             .MinimumLength(8)
             .WithMessage("Cep deve ter no mínimo 8 caracteres!")
@@ -44,11 +39,7 @@ public class FornecedorValidator : AbstractValidator<Fornecedor>
             .NotEmpty()
             .WithMessage("Cnpj não pode ser vazio!");
         
-        RuleFor(u => u.Complemento)
-            .MinimumLength(2)
-            .WithMessage("Complemento deve ter no mínimo 2 caracteres!")
-            .MaximumLength(60)
-            .WithMessage("Complemento deve ter no máximo 60 caracteres!");
+        
         
         RuleFor(u => u.Cpf)
             .IsValidCPF()
@@ -67,13 +58,13 @@ public class FornecedorValidator : AbstractValidator<Fornecedor>
             .WithMessage("Email não pode ser vazio!")
             .EmailAddress();
         
-        RuleFor(u => u.Endereco)
+        RuleFor(u => u.Rua)
             .MinimumLength(2)
-            .WithMessage("Endereco deve ter no mínimo 2 caracteres!")
+            .WithMessage("Rua deve ter no mínimo 2 caracteres!")
             .MaximumLength(60)
-            .WithMessage("Endereco deve ter no máximo 60 caracteres!")
+            .WithMessage("Rua deve ter no máximo 60 caracteres!")
             .NotEmpty()
-            .WithMessage("Endereco não pode ser vazio!");
+            .WithMessage("Rua não pode ser vazio!");
         
         RuleFor(u => u.Nome)
             .MinimumLength(2)

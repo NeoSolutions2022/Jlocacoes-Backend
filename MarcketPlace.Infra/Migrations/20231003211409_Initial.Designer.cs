@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarcketPlace.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230420013106_AddPrecoParaProdutoServico")]
-    partial class AddPrecoParaProdutoServico
+    [Migration("20231003211409_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,10 +101,6 @@ namespace MarcketPlace.Infra.Migrations
                     b.Property<DateTime?>("CodigoResetarSenhaExpiraEm")
                         .HasColumnType("DATETIME");
 
-                    b.Property<string>("Complemento")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(14)
@@ -119,9 +115,6 @@ namespace MarcketPlace.Infra.Migrations
                     b.Property<bool>("CriadoPorAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DataPagamento")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("Desativado")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -132,18 +125,8 @@ namespace MarcketPlace.Infra.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
                     b.Property<string>("Foto")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("Inadiplente")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -156,6 +139,11 @@ namespace MarcketPlace.Infra.Migrations
 
                     b.Property<int>("Numero")
                         .HasColumnType("int");
+
+                    b.Property<string>("Rua")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
@@ -203,10 +191,6 @@ namespace MarcketPlace.Infra.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Cep")
                         .IsRequired()
                         .HasMaxLength(9)
@@ -227,10 +211,6 @@ namespace MarcketPlace.Infra.Migrations
 
                     b.Property<DateTime?>("CodigoResetarSenhaExpiraEm")
                         .HasColumnType("DATETIME");
-
-                    b.Property<string>("Complemento")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -266,11 +246,6 @@ namespace MarcketPlace.Infra.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
                     b.Property<string>("Foto")
                         .HasColumnType("nvarchar(max)");
 
@@ -283,6 +258,11 @@ namespace MarcketPlace.Infra.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Responsavel")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Rua")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
@@ -327,6 +307,10 @@ namespace MarcketPlace.Infra.Migrations
 
                     b.Property<bool>("AtualizadoPorAdmin")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Caracteristica")
+                        .HasMaxLength(8000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Categoria")
                         .IsRequired()
@@ -398,6 +382,32 @@ namespace MarcketPlace.Infra.Migrations
                     b.ToTable("ProdutoServicos");
                 });
 
+            modelBuilder.Entity("MarcketPlace.Domain.Entities.ProdutoServicoCaracteristica", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Chave")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ProdutoServicoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Valor")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoServicoId");
+
+                    b.ToTable("ProdutoServicoCaracteristicas");
+                });
+
             modelBuilder.Entity("MarcketPlace.Domain.Entities.ProdutoServico", b =>
                 {
                     b.HasOne("MarcketPlace.Domain.Entities.Fornecedor", "Fornecedor")
@@ -409,9 +419,25 @@ namespace MarcketPlace.Infra.Migrations
                     b.Navigation("Fornecedor");
                 });
 
+            modelBuilder.Entity("MarcketPlace.Domain.Entities.ProdutoServicoCaracteristica", b =>
+                {
+                    b.HasOne("MarcketPlace.Domain.Entities.ProdutoServico", "ProdutoServico")
+                        .WithMany("ProdutoServicoCaracteristicas")
+                        .HasForeignKey("ProdutoServicoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ProdutoServico");
+                });
+
             modelBuilder.Entity("MarcketPlace.Domain.Entities.Fornecedor", b =>
                 {
                     b.Navigation("ProdutoServicos");
+                });
+
+            modelBuilder.Entity("MarcketPlace.Domain.Entities.ProdutoServico", b =>
+                {
+                    b.Navigation("ProdutoServicoCaracteristicas");
                 });
 #pragma warning restore 612, 618
         }

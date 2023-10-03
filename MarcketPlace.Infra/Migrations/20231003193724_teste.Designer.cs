@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MarcketPlace.Infra.Migrations
+namespace MarcketPlace.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231003011903_ModifyingModels")]
-    partial class ModifyingModels
+    [Migration("20231003193724_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
